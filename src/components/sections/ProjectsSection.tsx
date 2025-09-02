@@ -13,14 +13,20 @@ const projects = [
   },
   {
     title: 'WebSocket Chat Server',
-    description: 'Real-time chat application built with Go WebSocket server and React client. Features peer-to-peer matching and instant messaging.',
+    description: `Live chat application Web-socket server built with Go. 
+    Automatic P2P matching and instant messaging  with concurrancy tolerance. Deployed on Render.com. `,
     image: '/file.svg',
     github: 'https://github.com/blade9/websocket-chat',
     hasDemo: true,
   },
   {
-    title: 'Toy Blockchain Coin Madokoin',
-    description: 'A tool for visualizing complex datasets interactively.',
+    title: 'Madokoin - Toy Blockchain ',
+   
+    description: `A toy blockchain system I built from scratch in Python. 
+    It includes wallet generation, transaction signing and verification, 
+    a mining mechanism, balance tracking, and chain validation. 
+    Built for educational purposes to demonstrate cryptography concepts.”.`,
+
     image: '/globe.svg',
     github: 'https://github.com/blade9/dataviz',
   },
