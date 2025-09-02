@@ -1,20 +1,25 @@
+"use client"
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import Layout from "@/components/layout/Layout";
 
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode;  
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Header />
+      <head>
+        <title>Siddarth Selvakumar Portfolio</title>
+        <meta name="description" content="Siddarth Selvakumar's personal development portfolio showcasing skills, projects, and contact information." />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body className="bg-gray-950 text-gray-100">
+        <Layout>
           {children}
-        <Footer />
+        </Layout>
       </body>
     </html>
   );
