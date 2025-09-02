@@ -5,7 +5,7 @@ import { ChatSocket } from '../../lib/ChatSocket';
 
 export default function ChatCard() {
   const [input, setInput] = useState('');
-  const {messages, connected, hasPeer, userID, isDisconnecting, connect, sendMessage, clearMessages, disconnect } = ChatSocket('ws://localhost:8080/ws');
+  const {messages, connected, hasPeer, userID, isDisconnecting, connect, sendMessage, clearMessages, disconnect } = ChatSocket('ws://localhost:3000//ws');
 
   return (
     <div className="p-4 border rounded shadow max-w-lg mx-auto mt-20">
@@ -31,7 +31,7 @@ export default function ChatCard() {
           Disconnect
         </button>
         <span className={`ml-4 font-semibold ${connected ? (hasPeer ? 'text-green-500' : 'text-gray-500') : 'text-red-500'}`}>
-          {connected ? (hasPeer ? 'Connected to Peer' : 'Connected to Server') : (isDisconnecting ? 'Disconnecting...' : 'Disconnected') }
+          {connected ? (hasPeer ? 'Connected to Peer' : 'Searching...') : (isDisconnecting ? 'Disconnecting...' : 'Disconnected') }
         </span>
       </div>
 
