@@ -23,7 +23,7 @@ export default function Header() {
             className="text-2xl font-bold text-white hover:text-purple-400 transition-colors duration-300"
           >
             <span className="bg-gradient-to-r from-purple-400 to-purple-800 bg-clip-text text-transparent">
-              SIDDARTH'S
+                SIDDARTH&apos;S
             </span>
             <span className="text-gray-400 ml-2">
                 DEVELOPMENT PAGE
