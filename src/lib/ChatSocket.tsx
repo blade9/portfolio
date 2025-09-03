@@ -32,7 +32,7 @@ export function ChatSocket(url: string) {
 
         else{
             const protocol = window.location.protocol === "https:" ? "wss" : "ws";
-            socketRef.current = new WebSocket(`${protocol}://localhost:8080/ws`);
+            socketRef.current = new WebSocket(`wss${url}`);
         }
 
         socketRef.current.onopen = () => {
