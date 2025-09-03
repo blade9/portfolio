@@ -11,7 +11,7 @@ interface ChatPopupProps {
 
 export default function ChatPopup({ isOpen, onClose }: ChatPopupProps) {
   const [input, setInput] = useState('');
-  const {messages, connected, hasPeer, userID, isDisconnecting, connect, sendMessage, clearMessages, disconnect } = ChatSocket('://go-chat-portfolio.onrender.com/ws');
+  const {messages, connected, hasPeer, userID, isDisconnecting, isConnecting, connect, sendMessage, clearMessages, disconnect } = ChatSocket('://go-chat-portfolio.onrender.com/ws');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -76,7 +76,7 @@ export default function ChatPopup({ isOpen, onClose }: ChatPopupProps) {
             <div className="flex items-center space-x-2">
               <div className={`w-2 h-2 rounded-full ${connected ? (hasPeer ? 'bg-green-500' : 'bg-yellow-500') : 'bg-red-500'}`}></div>
               <span className={`font-mono text-xs ${connected ? (hasPeer ? 'text-green-400' : 'text-yellow-400') : 'text-red-400'}`}>
-                {connected ? (hasPeer ? 'CONNECTED' : 'SEARCHING') : (isDisconnecting ? 'DISCONNECTING...' : 'DISCONNECTED')}
+                {connected ? (hasPeer ? 'CONNECTED' : 'SEARCHING FOR PEER...') : (isDisconnecting ? 'DISCONNECTING...' : (isConnecting ? 'CONNECTING TO SERVER... PLEASE WAIT' : 'DISCONNECTED'))}
               </span>
             </div>
           </div>

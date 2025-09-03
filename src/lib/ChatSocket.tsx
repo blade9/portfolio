@@ -15,6 +15,7 @@ export function ChatSocket(url: string) {
     const socketRef = useRef<WebSocket | null>(null);
     const [userID, setUserID] = useState<string | null>(null);
     const [isDisconnecting, setIsDisconnecting] = useState(false);
+    const [isConnecting, setIsConnecting] = useState(false);
 
     
     // Clean up the WebSocket connection when the component unmounts or when the connection state changes
@@ -29,13 +30,19 @@ export function ChatSocket(url: string) {
             console.warn("WebSocket is currently disconnecting. Please wait...");
             return;
         }
+        else if (socketRef.current && socketRef.current.readyState === WebSocket.CONNECTING) {
+            console.warn("WebSocket is currently connecting. Please wait...");
+            return;
+        }
 
         else{
             const protocol = window.location.protocol === "https:" ? "wss" : "ws";
             socketRef.current = new WebSocket(`wss${url}`);
+            setIsConnecting(true);
         }
 
         socketRef.current.onopen = () => {
+            setIsConnecting(false);
             setConnected(true);
         };
         socketRef.current.onmessage = (event) => {
@@ -71,6 +78,7 @@ export function ChatSocket(url: string) {
             if (socketRef.current) {
                 socketRef.current.close();
                 setConnected(false);
+                setIsConnecting(false);
                 setHasPeer(false)
                 setMessages([]);
                 socketRef.current = null; // Clear the reference to the WebSocket
@@ -104,6 +112,7 @@ export function ChatSocket(url: string) {
         }
         setIsDisconnecting(true);
         setConnected(false);
+        setIsConnecting(false);
         setHasPeer(false)
         setMessages([]);
         socketRef.current?.close();
@@ -115,9 +124,10 @@ export function ChatSocket(url: string) {
         messages,
         userID,
         isDisconnecting,
+        isConnecting,
         connect,
         sendMessage,
         clearMessages,
-        disconnect,
+        disconnect
     }
 }
