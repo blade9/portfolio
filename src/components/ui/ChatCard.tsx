@@ -5,7 +5,7 @@ import { ChatSocket } from '../../lib/ChatSocket';
 
 export default function ChatCard() {
   const [input, setInput] = useState('');
-  const {messages, connected, hasPeer, userID, isDisconnecting, connect, sendMessage, clearMessages, disconnect } = ChatSocket('ws://localhost:3000//ws');
+  const {messages, connected, hasPeer, userID, isDisconnecting, isConnecting, connect, sendMessage, clearMessages, disconnect } = ChatSocket('ws://localhost:3000//ws');
 
   return (
     <div className="p-4 border rounded shadow max-w-lg mx-auto mt-20">
@@ -60,7 +60,7 @@ export default function ChatCard() {
         ) : (
           messages.map((msg, idx) => (
             <div key={idx} className="text-sm text-gray-800 mb-1">
-              {msg}
+              {msg.content}
             </div>
           ))
         )}

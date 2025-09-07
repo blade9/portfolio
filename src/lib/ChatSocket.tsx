@@ -7,11 +7,16 @@ interface ServerMessage {
     content?: string;
 }
 
+interface ChatMessage {
+    sender: 'user' | 'peer' | 'system';
+    content: string;
+}
+
 
 export function ChatSocket(url: string) {
     const [connected, setConnected] = useState(false);
     const [hasPeer, setHasPeer] = useState(false);
-    const [messages, setMessages] = useState<string[]>([]);
+    const [messages, setMessages] = useState<ChatMessage[]>([]);
     const socketRef = useRef<WebSocket | null>(null);
     const [userID, setUserID] = useState<string | null>(null);
     const [isDisconnecting, setIsDisconnecting] = useState(false);
@@ -50,33 +55,65 @@ export function ChatSocket(url: string) {
             const msgObj = JSON.parse(event.data);
             console.log("Received message:", msgObj);
 
-            if (msgObj.status === "connected" && msgObj.userID) {
+            if (msgObj.status == "connected" && msgObj.userID) {
                 setConnected(true);
-                setMessages((prev) => [...prev, `Connected as ${msgObj.userID}`]);
+                setMessages((prev) => [...prev, 
+                    {
+                        sender: 'system',  
+                        content: 'Connected as ' + msgObj.userID
+                    }
+                    ]);
                 setUserID(msgObj.userID);
             }
             else if (msgObj.status === "matched" && msgObj.peer) {
                 setHasPeer(true);
-                setMessages((prev) => [...prev, `Peer connected: ${msgObj.peer}`]);
+                setMessages((prev) => [...prev, 
+                    {
+                        sender: 'system',
+                        content: `Peer connected: ${msgObj.peer}`
+                    }
+                    ]);
             }
             else if (msgObj.status === "disconnected_peer" && msgObj.peer) {
                 setHasPeer(false);
-                setMessages((prev) => [...prev, `Disconnected from ${msgObj.peer}`]);
-                setMessages((prev) => [...prev, `Set to back in waiting list`]);                
+                setMessages((prev) => [...prev, 
+                    {
+                        sender: 'system',
+                        content: `Peer disconnected: ${msgObj.peer}`
+                    }
+                    ]);
+                setMessages((prev) => [...prev, 
+                    {
+                        sender: 'system',
+                        content: `Set to back in waiting list`
+                    }
+                    ]);              
             }
             else {    
                 const content = msgObj.content ?? "Unknown message format";
-                setMessages((prev) => [...prev, content]);
+                setMessages((prev) => [...prev, 
+                    {
+                        sender: msgObj.sender == userID ? 'user' : 'peer',
+                        content: content
+
+                    }
+                ]);
             }
         } catch (err) { 
             console.error("Invalid JSON message:", event.data);
-            setMessages((prev) => [...prev, `${event.data}`]); // fallback to raw data
+            setMessages((prev) => [...prev, 
+                {
+                    sender: 'system',
+                    content: `Invalid message format:`
+                }
+                ]); // fallback to raw data
         }
         };
 
         socketRef.current.onclose = () => {
             if (socketRef.current) {
                 socketRef.current.close();
+                setUserID(null);
                 setConnected(false);
                 setIsConnecting(false);
                 setHasPeer(false)
@@ -110,6 +147,7 @@ export function ChatSocket(url: string) {
             console.warn("WebSocket is not connected. Cannot disconnect.");
             return;
         }
+        setUserID(null);
         setIsDisconnecting(true);
         setConnected(false);
         setIsConnecting(false);

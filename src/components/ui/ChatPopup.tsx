@@ -87,7 +87,7 @@ export default function ChatPopup({ isOpen, onClose }: ChatPopupProps) {
           <div className="flex items-center space-x-2">
             <button
               onClick={connect}
-              disabled={connected || isDisconnecting}
+              disabled={connected || isDisconnecting || isConnecting}
               className="flex items-center space-x-1 px-3 py-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white text-xs font-mono rounded transition-colors duration-200"
             >
               <FaPlay className="text-xs" />
@@ -124,7 +124,7 @@ export default function ChatPopup({ isOpen, onClose }: ChatPopupProps) {
                 <div key={idx} className="bg-gray-900 border border-purple-500/20 rounded p-3">
                   <div className="flex items-start space-x-2">
                     <span className="text-purple-400 font-mono text-xs">{'>'}</span>
-                    <span className="text-gray-300 font-mono text-sm break-words">{msg}</span>
+                    <span className="text-gray-300 font-mono text-sm break-words">{"<" + msg.sender + '> ' + msg.content}</span>
                   </div>
                 </div>
               ))
