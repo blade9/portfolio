@@ -4,7 +4,7 @@ export default function Footer() {
 
 
   return (
-    <footer className="bg-gray-900 border-t border-purple-500/20 text-gray-400 text-sm">
+    <footer id="contact" className="bg-gray-900 border-t border-purple-500/20 text-gray-400 text-sm">
       <div className="h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-60"></div>
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4 py-4">
         {/* About/Brand */}

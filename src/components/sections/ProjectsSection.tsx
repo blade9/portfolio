@@ -13,27 +13,27 @@ const projects = [
   },
   {
     title: 'WebSocket Chat Server',
-    description: `Live chat application Web-socket server built with Go. 
-    Automatic P2P matching and instant messaging  with concurrancy tolerance. Deployed on Render.com. `,
+    description: `Live anonymous chat application connected to a Web-socket server built with Go. 
+    Automatic P2P matching and instant messaging with concurrant user tolerance. Deployed on Render.com. `,
     image: '/file.svg',
-    github: 'https://github.com/blade9/websocket-chat',
+    github: 'https://github.com/blade9/quantum_secure_chat',
     hasDemo: true,
   },
   {
     title: 'Madokoin - Toy Blockchain ',
    
-    description: `A toy blockchain system I built from scratch in Python. 
-    It includes wallet generation, transaction signing and verification, 
-    a mining mechanism, balance tracking, and chain validation. 
-    Built for educational purposes to demonstrate cryptography concepts.”.`,
+    description: `A toy blockchain system built in Python. 
+    Includes wallet generation, transaction signing and verification, 
+    a mining mechanism, balance tracking, and chain validation.`,
 
     image: '/globe.svg',
-    github: 'https://github.com/blade9/dataviz',
+    github: 'https://github.com/blade9/Madokoin',
   },
   {
     title: 'MusAI - AI Music Generator',
-    description: 'MusAI is an AI-powered piano music transcription system that converts audio recordings of piano music into MIDI files',
-    image: '/musai.svg',
+    description: `MusAI is an AI-powered piano music transcription system that 
+    converts audio recordings of piano music into MIDI files`,
+    image: '/musia.svg',
     github: 'https://github.com/blade9/MusAI_v2',
 
   }

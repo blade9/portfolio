@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { FaReact, FaPython, FaJs, FaDatabase } from 'react-icons/fa';
+import { FaReact, FaPython, FaJs, FaDatabase, FaGithub, FaJava, FaUnity} from 'react-icons/fa';
 
 const skills = [
   {
@@ -27,6 +27,26 @@ const skills = [
     description: `Databases store and organize data 
     efficiently for scalable apps.`,
   },
+
+  {
+    name: 'Github',
+    icon: <FaGithub className="text-gray-400 text-3xl" />,
+    description: `GitHub is essential for version control, 
+    collaboration, and code hosting.`,
+  },
+  {
+    name: 'Java',
+    icon: <FaJava className="text-red-400 text-3xl" />,
+    description: `Java is a robust, platform-independent language 
+    widely used in enterprise applications.`,
+  },
+
+  {
+    name: 'Unity',
+    icon: <FaUnity className="text-black text-3xl" />,
+    description: `Unity is a powerful game engine for creating 
+    2D and 3D interactive experiences and VR experiences.`,
+  }
 ];
 
 export default function SkillsSection() {

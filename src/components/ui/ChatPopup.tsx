@@ -53,8 +53,7 @@ export default function ChatPopup({ isOpen, onClose }: ChatPopupProps) {
             <div className="flex items-center space-x-3">
               <FaTerminal className="text-purple-400 text-xl" />
               <div>
-                <h2 className="text-white font-mono font-bold text-lg">WebSocket Chat Terminal</h2>
-                <p className="text-purple-300 text-sm font-mono">Go Server Demo</p>
+                <h2 className="text-white font-mono font-bold text-lg">Chat Terminal</h2>
               </div>
             </div>
             <button
