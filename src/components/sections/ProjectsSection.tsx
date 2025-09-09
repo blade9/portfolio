@@ -33,7 +33,7 @@ const projects = [
     title: 'MusAI - AI Music Generator',
     description: `MusAI is an AI-powered piano music transcription system that 
     converts audio recordings of piano music into MIDI files`,
-    image: '/musia.svg',
+    image: '/musai.svg',
     github: 'https://github.com/blade9/MusAI_v2',
 
   }
